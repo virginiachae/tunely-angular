@@ -30,10 +30,51 @@
                     <li class="list-group-item">
                       <h4 class="inline-header">Songs:</h4>
                       <div class="list-group-item" ng-repeat="song in albumsShowCtrl.album.songs">
-                        ({{song.trackNumber}}){{song.name}}
+                        <button class='btn btn-danger' ng-click="albumsShowCtrl.deleteSong(song)">X</button>
+                        <button class='btn btn-info' ng-hide="editing" ng-click="editing = true">Edit</button>
+                        <button class='btn btn-success' ng-show="editing" ng-click="albumsShowCtrl.editSong(song); editing = false">Save</button>
+                        <span ng-hide="editing">({{song.trackNumber}})</span> <span ng-hide="editing">{{song.name}}</span>
+                        <input ng-show="editing" ng-model="song.trackNumber" type="text" size="2" class="form-control input-md">
+                        <input ng-show="editing" ng-model="song.name" type="text" class="form-control input-md">
                       </div>
                     </li>
                   </ul>
+                </div>
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+
+                    <form class="form-horizontal" ng-submit="albumsShowCtrl.createSong()">
+                      <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Add New Song</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Track Number</label>
+                          <div class="col-md-4">
+                          <input id="name" ng-model="albumsShowCtrl.newSong.trackNumber" type="text" class="form-control input-md" required="">
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Track Name</label>
+                          <div class="col-md-4">
+                          <input ng-model="albumsShowCtrl.newSong.name" type="text" class="form-control input-md">
+                          </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Save Song</label>
+                          <div class="col-md-4">
+                            <button class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
