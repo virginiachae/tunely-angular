@@ -1,16 +1,19 @@
 angular
-  .module('tunely')
-  .controller('AlbumsShowController', AlbumsShowController);
+    .module('tunely')
+    .controller('AlbumsShowController', AlbumsShowController);
 
-	AlbumsShowController.$inject = ['$http', '$routeParams'];
-  function AlbumsShowController (  $http,   $routeParams  ) {
+AlbumsShowController.$inject = ['$http', '$routeParams'];
+
+function AlbumsShowController($http, $routeParams) {
     var vm = this;
     console.log($routeParams);
 
     $http({
-      method: 'GET',
-      url: '/api/albums/'+  // how can we get the id? (hint: check console log from above)
-    }).then(function successCallback(json) {
-      vm.album = json.data;
-    });
-  }
+        method: 'GET',
+        url: '/api/albums/'+ $routeParams.id
+    }).then(function successShowAlbum(json) {
+        vm.album = json.data;
+    }, function errorShowAlbum(error) {
+      console.log('error is: ', error);
+    }
+  )};

@@ -6,12 +6,10 @@
 
 angular
   .module('tunely', ['ngRoute'])
-  .config(config)
-  .controller('AlbumsIndexController', AlbumsIndexController);
-  .controller('AlbumsShowController', AlbumsShowController);
+  .config(config);
 
   config.$inject = ['$routeProvider', '$locationProvider'];
-  function config(   $routeProvider,  $locationProvider   ) {
+  function config($routeProvider,  $locationProvider) {
     $routeProvider
     .when('/', {
       templateUrl: '/templates/albums',
@@ -23,9 +21,8 @@ angular
       controllerAs: 'albumsShowCtrl',
       controller: 'AlbumsShowController'
     });
-
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false
     });
-  }
+  };
