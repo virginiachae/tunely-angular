@@ -52,4 +52,19 @@ vm.deleteAlbum = function(album) {
 	})
 }
 
+vm.editAlbum = function(album) {
+	$http({
+		method: 'PUT',
+		url: '/api/albums/' + album._id,
+		data: {
+			name: album.name,
+			artistName: album.artistName
+		}
+	}).then(function successPut(updatedAlbum) {
+		console.log('updated album to: ', updatedAlbum);
+	}, function errorPut(error) {
+		console.log('error is: ', error);
+	})
+}
+
 }
